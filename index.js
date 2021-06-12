@@ -30,7 +30,7 @@ const run = () => {
   const manager = new CommandManager('./commands');
 
   instructions.forEach((instruction) => {
-    const [ command, ...args ] = commandParser.parse(instruction);
+    const { command, args } = commandParser.parse(instruction);
 
     manager.execute(command, args);
   });

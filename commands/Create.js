@@ -10,7 +10,6 @@ class Create extends Command {
    *  iteration.
    */
   static do(directory, args) {
-    // base
     if (args.length === 0) {
       console.log('CREATE command needs one argument.');
       return false;

@@ -1,6 +1,11 @@
 class CommandParser {
   parse(instruction) {
-    return instruction.split(' ');
+    const [ command, ...args ] = instruction.split(' ');
+
+    return {
+      command: command.toUpperCase(),
+      args
+    };
   }
 }
 
