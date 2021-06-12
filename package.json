@@ -1,0 +1,19 @@
+{
+  "name": "virtual-directory",
+  "version": "1.0.0",
+  "description": "Command line client that simulates directory manipulation commands",
+  "main": "index.js",
+  "scripts": {
+    "client": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Subastkar/virtual-directory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Subastkar/virtual-directory/issues"
+  },
+  "homepage": "https://github.com/Subastkar/virtual-directory#readme"
+}
