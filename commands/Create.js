@@ -23,10 +23,10 @@ class Create extends Command {
       const folderName = split[count];
 
       if (!pastFolder) {
-        console.log(`Directory path invalid.`);
+        console.log(`Directory path ${args[0]} invalid.`);
         break;
       } else if (folderName === '') {
-        console.log(`Directory name invalid.`);
+        console.log('Directory name invalid.');
         break;
       };
 
