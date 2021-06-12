@@ -17,6 +17,10 @@ class CommandManager {
   }
 
   execute(cmdName, args) {
+    if (cmdName === '') {
+      return false;
+    }
+
     const cmd = this[cmdName];
 
     if (cmd) {
