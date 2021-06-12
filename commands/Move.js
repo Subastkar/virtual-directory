@@ -35,7 +35,10 @@ class Move extends Command {
       };
 
       if (count === dirLength - 1) {
-        folder = pastFolder[folderName];
+        folder = {
+          name: folderName,
+          data: pastFolder[folderName]
+        };
         delete pastFolder[folderName];
       } else {
         pastFolder = pastFolder[folderName];
@@ -62,7 +65,11 @@ class Move extends Command {
       };
 
       if (count === dirLength - 1) {
-        pastFolder[folderName] = folder;
+        const currentFolder = {
+          ...pastFolder[folderName],
+          [folder.name]: folder.data
+        };
+        pastFolder[folderName] = currentFolder;
       } else {
         pastFolder = pastFolder[folderName];
       }
