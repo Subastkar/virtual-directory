@@ -20,3 +20,5 @@ npm run client file/path
 # Notes
 
 There is plenty room for improvement, one of the TODO would be to make a method that contains the iteration of the arguments but to be honest I couldn't figure it out in the remaingin time that I had.
+
+Also we are missing testing.
