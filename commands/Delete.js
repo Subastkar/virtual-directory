@@ -1,6 +1,6 @@
 const Command = require("./Command");
 
-class Create extends Command {
+class Delete extends Command {
   /**
    *  Will delete a folder given an specific path
    */
@@ -36,4 +36,4 @@ class Create extends Command {
   }
 }
 
-module.exports = Create;
+module.exports = Delete;
