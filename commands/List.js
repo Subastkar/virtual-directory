@@ -2,8 +2,10 @@ const Command = require("./Command");
 
 class List extends Command {
   /**
-   *  Will print the actual state of the directoty
    *
+   * @param {Object} directory Current state of the virtual directory.
+   *
+   * Will print the actual state of the directoty
    */
   static do(directory) {
     console.log('\nDirectory status -----------------');
@@ -11,6 +13,13 @@ class List extends Command {
     return true;
   }
 
+  /**
+   *
+   * @param {Object} directory Current state of the virtual directory.
+   * @param {Integer} deep Value that associates with how deep we are in the root object.
+   *
+   * This function allow to iterate nested objects.
+   */
   static iterate(directory, deep = 0) {
     Object.keys(directory).forEach((rootKey) => {
       const item = directory[rootKey];
@@ -23,6 +32,13 @@ class List extends Command {
     });
   }
 
+  /**
+   *
+   * @param {Integer} deep Value that associates with how deep we are in the root object.
+   * @param {String} string Data to be printed
+   *
+   * Prints an output on the console.
+   */
   static print(deep, string) {
     const prefix = '.'.repeat(deep);
     console.log(`${prefix}${string}`);

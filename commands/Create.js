@@ -2,12 +2,16 @@ const Command = require("./Command");
 
 class Create extends Command {
   /**
-   *  Do will execute the main porpuse of the create command.
    *
-   *  This command can be desgined to be avble to create multiple
-   *  folders based on the number of the given arguments but this
-   *  increases the complexity of the code since it would an extra
-   *  iteration.
+   * @param {Object} directory Current state of the virtual directory.
+   * @param {Array} args Arguments that the command would use.
+   *
+   * Do will execute the main porpuse of the create command.
+   *
+   * This command can be desgined to be avble to create multiple
+   * folders based on the number of the given arguments but this
+   * increases the complexity of the code since it would an extra
+   * iteration.
    */
   static do(directory, args) {
     if (args.length === 0) {

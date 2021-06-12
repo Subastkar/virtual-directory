@@ -2,7 +2,11 @@ const Command = require("./Command");
 
 class Delete extends Command {
   /**
-   *  Will delete a folder given an specific path
+   *
+   * @param {Object} directory Current state of the virtual directory.
+   * @param {Array} args Arguments that the command would use.
+   *
+   * Will delete a folder given an specific path
    */
   static do(directory, args) {
     if (args.length === 0) {

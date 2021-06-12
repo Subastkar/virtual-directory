@@ -2,7 +2,12 @@ const Command = require("./Command");
 
 class Move extends Command {
   /**
-   *  Will move a folder in to the new expected path.
+   *
+   * @param {Object} directory Current state of the virtual directory.
+   * @param {Array} args Arguments that the command would use.
+   *
+   * Will move a folder in to the new expected path.
+   * Will delete a folder given an specific path
    */
   static do(directory, args) {
     if (args.length === 0) {
@@ -17,6 +22,16 @@ class Move extends Command {
     this.assign(directory, targetPath, folder);
   }
 
+  /**
+   *
+   * @param {Object} directory Current state of the virtual directory.
+   * @param {Array} path Path to follow inside the virtual directory.
+   * @returns {Object} This would be the value and name of the folder
+   *  that want to be moved.
+   *
+   * This function will return the information fo the folder that is
+   * targeted to be moved and will delete it from it's original position.
+   */
   static getAndDelete(directory, path) {
     const dirLength = path.length;
     let pastFolder = directory;
@@ -48,6 +63,15 @@ class Move extends Command {
     return folder;
   }
 
+  /**
+   *
+   * @param {Object} directory Current state of the virtual directory.
+   * @param {Array} path Path to follow inside the virtual directory.
+   * @param {Object} folder Folder data to be inserted in the new position.
+   *
+   * This method will insert the folder information inside the new given
+   * path.
+   */
   static assign(directory, path, folder) {
     const dirLength = path.length;
     let pastFolder = directory;

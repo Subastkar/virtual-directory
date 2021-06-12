@@ -1,6 +1,11 @@
 const fs = require('fs');
 
 class FileReader {
+  /**
+   * @param {String} path Path were to find the file.
+   * @returns {String} File string vlue
+   * This method reads a given file and returns it string value.
+   */
   read(path) {
     let data = '';
     try {
