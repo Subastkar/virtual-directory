@@ -4,8 +4,9 @@ Program that simulates command execution for directory management.
 
 # Dependencies
 
-Node v14.17.0
-Install package dependencies:
+**Node version:** v14.17.0
+
+Installing package dependencies:
 ```
 npm install
 ```
