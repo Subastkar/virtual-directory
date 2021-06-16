@@ -10,8 +10,8 @@ class Move extends Command {
    * Will delete a folder given an specific path
    */
   static do(directory, args) {
-    if (args.length === 0) {
-      throw new Error('MOVE command needs one arguments.');
+    if (args.length < 2) {
+      throw new Error('MOVE command needs two arguments.');
     }
 
     const originPath = args[0].split('/');
@@ -41,7 +41,7 @@ class Move extends Command {
       folderName = path[count];
 
       if (!pastFolder) {
-        throw new Error(`Directory path ${path.joing('/')} invalid.`);
+        throw new Error(`Directory path ${path.join('/')} invalid.`);
       } else if (folderName === '') {
         throw new Error('Directory name invalid.');
       };
@@ -78,7 +78,7 @@ class Move extends Command {
       folderName = path[count];
 
       if (!pastFolder) {
-        throw new Error(`Directory path ${path.joing('/')} invalid.`);
+        throw new Error(`Directory path ${path.join('/')} invalid.`);
       } else if (folderName === '') {
         throw new Error('Directory name invalid.');
       };

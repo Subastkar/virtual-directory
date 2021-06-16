@@ -10,7 +10,7 @@ class Delete extends Command {
    */
   static do(directory, args) {
     if (args.length === 0) {
-      throw new Error("MOVE command needs one arguments.");
+      throw new Error("DELETE command needs one argument.");
     }
 
     const path = args[0].split('/');
