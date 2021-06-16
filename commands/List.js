@@ -8,8 +8,8 @@ class List extends Command {
    * Will print the actual state of the directoty
    */
   static do(directory) {
-    console.log('\nDirectory status -----------------');
     this.iterate(directory);
+    console.log('\n');
     return true;
   }
 
@@ -21,7 +21,7 @@ class List extends Command {
    * This function allow to iterate nested objects.
    */
   static iterate(directory, deep = 0) {
-    Object.keys(directory).forEach((rootKey) => {
+    Object.keys(directory).sort().forEach((rootKey) => {
       const item = directory[rootKey];
 
       this.print(deep, rootKey);
@@ -40,7 +40,7 @@ class List extends Command {
    * Prints an output on the console.
    */
   static print(deep, string) {
-    const prefix = '.'.repeat(deep);
+    const prefix = ' '.repeat(deep);
     console.log(`${prefix}${string}`);
   }
 }
