@@ -11,8 +11,7 @@ class Move extends Command {
    */
   static do(directory, args) {
     if (args.length === 0) {
-      console.log('MOVE command needs one arguments.');
-      return false;
+      throw new Error('MOVE command needs one arguments.');
     }
 
     const originPath = args[0].split('/');
@@ -42,11 +41,9 @@ class Move extends Command {
       folderName = path[count];
 
       if (!pastFolder) {
-        console.log(`Directory path ${path.joing('/')} invalid.`);
-        break;
+        throw new Error(`Directory path ${path.joing('/')} invalid.`);
       } else if (folderName === '') {
-        console.log('Directory name invalid.');
-        break;
+        throw new Error('Directory name invalid.');
       };
 
       if (count === dirLength - 1) {
@@ -81,11 +78,9 @@ class Move extends Command {
       folderName = path[count];
 
       if (!pastFolder) {
-        console.log(`Directory path ${path.joing('/')} invalid.`);
-        break;
+        throw new Error(`Directory path ${path.joing('/')} invalid.`);
       } else if (folderName === '') {
-        console.log('Directory name invalid.');
-        break;
+        throw new Error('Directory name invalid.');
       };
 
       if (count === dirLength - 1) {

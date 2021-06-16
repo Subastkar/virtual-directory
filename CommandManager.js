@@ -33,10 +33,14 @@ class CommandManager {
 
     const cmd = this[cmdName];
 
-    if (cmd) {
-      cmd.do(this.directory, args);
-    } else {
+    if (!cmd) {
       console.log(`Command ${cmdName} does not exists.`);
+    }
+
+    try {
+      cmd.do(this.directory, args);
+    } catch (error) {
+      console.log(error.message);
     }
   }
 }

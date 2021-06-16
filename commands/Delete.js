@@ -10,8 +10,7 @@ class Delete extends Command {
    */
   static do(directory, args) {
     if (args.length === 0) {
-      console.log('MOVE command needs one arguments.');
-      return false;
+      throw new Error("MOVE command needs one arguments.");
     }
 
     const path = args[0].split('/');
@@ -23,11 +22,9 @@ class Delete extends Command {
       folderName = path[count];
 
       if (!pastFolder) {
-        console.log(`Directory path ${args[0]} invalid.`);
-        break;
+        throw new Error(`Directory path ${args[0]} invalid.`);
       } else if (folderName === '') {
-        console.log('Directory name invalid.');
-        break;
+        throw new Error('Directory name invalid.');
       };
 
       if (count === dirLength - 1) {
