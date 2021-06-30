@@ -1,5 +1,5 @@
 module.exports = {
   testCommand: {
-    do: () => true
-  }
+    do: () => true,
+  },
 };

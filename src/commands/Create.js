@@ -1,4 +1,4 @@
-const Command = require("./Command");
+const Command = require('./Command');
 
 class Create extends Command {
   /**
@@ -40,6 +40,8 @@ class Create extends Command {
         pastFolder = pastFolder[folderName];
       }
     }
+
+    return true;
   }
 }
 

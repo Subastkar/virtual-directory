@@ -1,12 +1,11 @@
-const expect = require('chai').expect;
-const CommandParser = require('../CommandParser');
+const { expect } = require('chai');
+const CommandParser = require('../../src/CommandParser');
 
-describe('CommandParser', function() {
-  describe('parse', function() {
-    it('should register all the given commands inside the manager context', function() {
+describe('CommandParser', () => {
+  describe('parse', () => {
+    it('should register all the given commands inside the manager context', () => {
       const instruction = 'CreaTE some/folder nonUsedParam';
-      const instance = new CommandParser();
-      const response = instance.parse(instruction);
+      const response = CommandParser.parse(instruction);
 
       expect(response).to.be.instanceof(Object);
       expect(response.command).to.be.equal('CREATE');

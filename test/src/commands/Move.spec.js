@@ -1,44 +1,42 @@
-const expect = require("chai").expect;
-const sinon = require("sinon");
-const Move = require("../../commands/Move");
+const { expect } = require('chai');
+const sinon = require('sinon');
+const Move = require('../../../src/commands/Move');
 
-describe("Commands/", function () {
-  describe("Move", function () {
-    describe("do", function () {
+describe('Commands/', () => {
+  describe('Move', () => {
+    describe('do', () => {
       let getAndDeleteStub;
       let assignStub;
 
-      beforeEach(function () {
+      beforeEach(() => {
         getAndDeleteStub = sinon.stub(Move, 'getAndDelete').returns({});
         assignStub = sinon.stub(Move, 'assign').returns({});
       });
 
-      afterEach(function () {
+      afterEach(() => {
         getAndDeleteStub.restore();
         assignStub.restore();
       });
 
-      it("should return an error if there is no arguments", function () {
+      it('should return an error if there is no arguments', () => {
         const error = () => Move.do({}, []);
 
         expect(error).to.throw('MOVE command needs two arguments.');
       });
 
-      it("should return an error if only one argument is passed", function () {
+      it('should return an error if only one argument is passed', () => {
         const error = () => Move.do({}, ['first/path']);
 
         expect(error).to.throw('MOVE command needs two arguments.');
       });
 
-      it("should return an error if there was an issue calling getAndDelete", function () {
+      it('should return an error if there was an issue calling getAndDelete', () => {
         const firstPath = 'first/path';
         const secondPath = 'second/path';
-        const errorMsg = 'New error.'
+        const errorMsg = 'New error.';
 
         getAndDeleteStub.restore();
-        getAndDeleteStub = sinon.stub(Move, "getAndDelete").throws(() => {
-          return new Error(errorMsg);
-        });
+        getAndDeleteStub = sinon.stub(Move, 'getAndDelete').throws(() => new Error(errorMsg));
         const error = () => Move.do({}, [firstPath, secondPath]);
 
         expect(error).to.throw(errorMsg);
@@ -46,15 +44,13 @@ describe("Commands/", function () {
         expect(assignStub.called).to.be.false;
       });
 
-      it("should return an error if there was an issue calling assign", function () {
+      it('should return an error if there was an issue calling assign', () => {
         const firstPath = 'first/path';
         const secondPath = 'second/path';
-        const errorMsg = 'New error.'
+        const errorMsg = 'New error.';
 
         assignStub.restore();
-        assignStub = sinon.stub(Move, "assign").throws(() => {
-          return new Error(errorMsg);
-        });
+        assignStub = sinon.stub(Move, 'assign').throws(() => new Error(errorMsg));
         const error = () => Move.do({}, [firstPath, secondPath]);
 
         expect(error).to.throw(errorMsg);
@@ -63,44 +59,44 @@ describe("Commands/", function () {
       });
     });
 
-    describe("getAndDelete", function () {
-      it("should return an error if the new folder name is blank", function () {
+    describe('getAndDelete', () => {
+      it('should return an error if the new folder name is blank', () => {
         const path = ['nonExistentFolder', 'inside'];
         const error = () => Move.getAndDelete({}, path);
 
-        expect(error).to.throw(`Directory path ${path.join('/')} invalid.`);
+        expect(error).to.throw(`Cannot move ${path.join('/')} - ${path[0]} does not exist.`);
       });
 
-      it("should return an error if the new folder path is invalid", function () {
+      it('should return an error if the new folder path is invalid', () => {
         const path = ['folder', '', 'inside'];
         const directory = {
-          folder: {}
+          folder: {},
         };
         const error = () => Move.getAndDelete(directory, path);
 
         expect(error).to.throw('Directory name invalid.');
       });
 
-      it("should update the directory to remove the folder", function () {
+      it('should update the directory to remove the folder', () => {
         const path = ['folder', 'moving'];
         const directory = {
           folder: {
             inside: {},
             moving: {
-              this: {}
-            }
-          }
+              this: {},
+            },
+          },
         };
         const expectedResult = {
           folder: {
-            inside: {}
-          }
+            inside: {},
+          },
         };
         const expectedResponse = {
           name: 'moving',
           data: {
-            this: {}
-          }
+            this: {},
+          },
         };
 
         const folder = Move.getAndDelete(directory, path);
@@ -111,57 +107,57 @@ describe("Commands/", function () {
       });
     });
 
-    describe("assign", function () {
-      it("should return an error if the new folder name is blank", function () {
+    describe('assign', () => {
+      it('should return an error if the new folder name is blank', () => {
         const path = ['nonExistentFolder', 'inside'];
         const folder = {
           name: 'moving',
           data: {
-            this: {}
-          }
+            this: {},
+          },
         };
         const error = () => Move.assign({}, path, folder);
 
-        expect(error).to.throw(`Directory path ${path.join('/')} invalid.`);
+        expect(error).to.throw(`Cannot move ${path.join('/')} - ${path[0]} does not exist.`);
       });
 
-      it("should return an error if the new folder path is invalid", function () {
+      it('should return an error if the new folder path is invalid', () => {
         const path = ['folder', '', 'inside'];
         const directory = {
-          folder: {}
+          folder: {},
         };
         const folder = {
           name: 'moving',
           data: {
-            this: {}
-          }
+            this: {},
+          },
         };
         const error = () => Move.assign(directory, path, folder);
 
         expect(error).to.throw('Directory name invalid.');
       });
 
-      it("should update the directory to remove the folder", function () {
+      it('should update the directory to remove the folder', () => {
         const path = ['folder', 'inside'];
         const directory = {
           folder: {
-            inside: {}
-          }
+            inside: {},
+          },
         };
         const folder = {
           name: 'moving',
           data: {
-            this: {}
-          }
+            this: {},
+          },
         };
         const expectedResult = {
           folder: {
             inside: {
               moving: {
-                this: {}
-              }
-            }
-          }
+                this: {},
+              },
+            },
+          },
         };
 
         Move.assign(directory, path, folder);

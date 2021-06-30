@@ -6,11 +6,13 @@ class CommandParser {
    * the executing command and it's argument
    */
   static parse(instruction) {
+    // Print out executed instruction
+    console.log(instruction);
     const [command, ...args] = instruction.split(' ');
 
     return {
       command: command.toUpperCase(),
-      args
+      args,
     };
   }
 }

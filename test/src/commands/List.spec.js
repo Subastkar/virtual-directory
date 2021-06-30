@@ -1,34 +1,32 @@
-const expect = require("chai").expect;
+const { expect } = require('chai');
 const sinon = require('sinon');
-const List = require("../../commands/List");
+const List = require('../../../src/commands/List');
 
-describe("Commands/", function () {
-  describe("List", function () {
-    describe("do", function () {
+describe('Commands/', () => {
+  describe('List', () => {
+    describe('do', () => {
       let iterateStub;
 
-      beforeEach(function () {
+      beforeEach(() => {
         iterateStub = sinon.stub(List, 'iterate').returns({});
       });
 
-      afterEach(function () {
+      afterEach(() => {
         iterateStub.restore();
       });
 
-      it("should return an error if there was an issue calling iterate", function () {
-        const errorMsg = 'New error.'
+      it('should return an error if there was an issue calling iterate', () => {
+        const errorMsg = 'New error.';
 
         iterateStub.restore();
-        iterateStub = sinon.stub(List, "iterate").throws(() => {
-          return new Error(errorMsg);
-        });
+        iterateStub = sinon.stub(List, 'iterate').throws(() => new Error(errorMsg));
         const error = () => List.do({});
 
         expect(error).to.throw(errorMsg);
         expect(iterateStub.callCount).to.be.equal(1);
       });
 
-      it("should return a success if there was no issue", function () {
+      it('should return a success if there was no issue', () => {
         const response = List.do({});
 
         expect(response).to.be.true;
@@ -36,33 +34,31 @@ describe("Commands/", function () {
       });
     });
 
-    describe("do", function () {
+    describe('do', () => {
       const sandbox = sinon.createSandbox();
       let printStub;
 
-      beforeEach(function () {
+      beforeEach(() => {
         sandbox.spy(List, 'iterate');
         printStub = sinon.stub(List, 'print').returns({});
       });
 
-      afterEach(function () {
+      afterEach(() => {
         printStub.restore();
         sandbox.restore();
       });
 
-      it("should return an error if there was an issue calling print", function () {
-        const errorMsg = 'New error.'
+      it('should return an error if there was an issue calling print', () => {
+        const errorMsg = 'New error.';
         const directory = {
           first: {},
           second: {
-            internal: {}
-          }
+            internal: {},
+          },
         };
 
         printStub.restore();
-        printStub = sinon.stub(List, "print").throws(() => {
-          return new Error(errorMsg);
-        });
+        printStub = sinon.stub(List, 'print').throws(() => new Error(errorMsg));
         const error = () => List.do(directory);
 
         expect(error).to.throw(errorMsg);
@@ -70,12 +66,12 @@ describe("Commands/", function () {
         expect(List.iterate.callCount).to.be.equal(1);
       });
 
-      it("should return a success if there was no issue", function () {
+      it('should return a success if there was no issue', () => {
         const directory = {
           first: {},
           second: {
-            internal: {}
-          }
+            internal: {},
+          },
         };
 
         List.do(directory);

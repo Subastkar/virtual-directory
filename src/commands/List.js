@@ -1,4 +1,4 @@
-const Command = require("./Command");
+const Command = require('./Command');
 
 class List extends Command {
   /**
@@ -28,6 +28,8 @@ class List extends Command {
       if (typeof item === 'object') {
         return this.iterate(item, deep + 1);
       }
+
+      return true;
     });
   }
 

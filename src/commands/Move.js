@@ -1,4 +1,4 @@
-const Command = require("./Command");
+const Command = require('./Command');
 
 class Move extends Command {
   /**

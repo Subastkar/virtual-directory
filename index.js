@@ -1,8 +1,8 @@
-const CommandParser = require('./CommandParser');
-const CommandManager = require('./CommandManager');
-const Parser = require('./Parser');
-const FileReader = require('./FileReader');
-const commandsDirectory = require('./commands');
+const CommandParser = require('./src/CommandParser');
+const CommandManager = require('./src/CommandManager');
+const Parser = require('./src/fileParser/Parser');
+const FileReader = require('./src/fileParser/FileReader');
+const commandsDirectory = require('./src/commands');
 
 /**
  *  Main function:
