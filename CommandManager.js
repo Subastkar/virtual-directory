@@ -1,7 +1,5 @@
 class CommandManager {
-  constructor(commandsDirectory) {
-    const commands = require(commandsDirectory);
-
+  constructor(commands) {
     this.directory = {};
     this.register(commands);
   }

@@ -2,6 +2,7 @@ const CommandParser = require('./CommandParser');
 const CommandManager = require('./CommandManager');
 const Parser = require('./Parser');
 const FileReader = require('./FileReader');
+const commandsDirectory = require('./commands');
 
 /**
  *  Main function:
@@ -10,12 +11,11 @@ const FileReader = require('./FileReader');
  */
 const run = async () => {
   const parser = new Parser(new FileReader());
-  const commandParser = new CommandParser();
-  const manager = new CommandManager('./commands');
+  const manager = new CommandManager(commandsDirectory);
 
   const instructions = await parser.parse(process.argv[2]);
   instructions.forEach((instruction) => {
-    const { command, args } = commandParser.parse(instruction);
+    const { command, args } = CommandParser.parse(instruction);
 
     manager.execute(command, args);
   });

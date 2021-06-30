@@ -9,7 +9,6 @@ class List extends Command {
    */
   static do(directory) {
     this.iterate(directory);
-    console.log('\n');
     return true;
   }
 

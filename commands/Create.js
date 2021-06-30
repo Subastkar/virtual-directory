@@ -21,15 +21,18 @@ class Create extends Command {
     const split = args[0].split('/');
     const dirLength = split.length;
     let pastFolder = directory;
+    let folderName = 'root';
 
     for (let count = 0; count < dirLength; count++) {
-      const folderName = split[count];
-
       if (!pastFolder) {
-        throw new Error(`Directory path ${args[0]} invalid.`);
-      } else if (folderName === '') {
+        throw new Error(`Cannot create ${args[0]} - ${folderName} does not exist.`);
+      }
+
+      folderName = split[count];
+
+      if (folderName === '') {
         throw new Error('Directory name invalid.');
-      };
+      }
 
       if (count === dirLength - 1) {
         pastFolder[folderName] = {};

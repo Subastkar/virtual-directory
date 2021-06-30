@@ -5,8 +5,8 @@ class CommandParser {
    * This method will split the command in order to be able to return
    * the executing command and it's argument
    */
-  parse(instruction) {
-    const [ command, ...args ] = instruction.split(' ');
+  static parse(instruction) {
+    const [command, ...args] = instruction.split(' ');
 
     return {
       command: command.toUpperCase(),

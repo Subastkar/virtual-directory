@@ -38,18 +38,20 @@ class Move extends Command {
     let folder = {};
 
     for (let count = 0; count < dirLength; count++) {
+      if (!pastFolder) {
+        throw new Error(`Cannot move ${path.join('/')} - ${folderName} does not exist.`);
+      }
+
       folderName = path[count];
 
-      if (!pastFolder) {
-        throw new Error(`Directory path ${path.join('/')} invalid.`);
-      } else if (folderName === '') {
+      if (folderName === '') {
         throw new Error('Directory name invalid.');
       };
 
       if (count === dirLength - 1) {
         folder = {
           name: folderName,
-          data: pastFolder[folderName]
+          data: pastFolder[folderName],
         };
         delete pastFolder[folderName];
       } else {
@@ -75,13 +77,15 @@ class Move extends Command {
     let folderName = 'root';
 
     for (let count = 0; count < dirLength; count++) {
+      if (!pastFolder) {
+        throw new Error(`Cannot move ${path.join('/')} - ${folderName} does not exist.`);
+      }
+
       folderName = path[count];
 
-      if (!pastFolder) {
-        throw new Error(`Directory path ${path.join('/')} invalid.`);
-      } else if (folderName === '') {
+      if (folderName === '') {
         throw new Error('Directory name invalid.');
-      };
+      }
 
       if (count === dirLength - 1) {
         const currentFolder = {

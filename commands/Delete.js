@@ -19,13 +19,15 @@ class Delete extends Command {
     let folderName = 'root';
 
     for (let count = 0; count < dirLength; count++) {
+      if (!pastFolder) {
+        throw new Error(`Cannot delete ${args[0]} - ${folderName} does not exist.`);
+      }
+
       folderName = path[count];
 
-      if (!pastFolder) {
-        throw new Error(`Directory path ${args[0]} invalid.`);
-      } else if (folderName === '') {
+      if (folderName === '') {
         throw new Error('Directory name invalid.');
-      };
+      }
 
       if (count === dirLength - 1) {
         delete pastFolder[folderName];
