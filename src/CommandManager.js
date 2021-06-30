@@ -1,6 +1,5 @@
 class CommandManager {
   constructor(commands) {
-    this.directory = {};
     this.register(commands);
   }
 
@@ -24,22 +23,25 @@ class CommandManager {
    * @param {Array} args List of arguments to be passed to the given command.
    * This method is in charge of executing each command.
    */
-  execute(cmdName, args) {
+  execute(directory, cmdName, args) {
     if (cmdName === '') {
       return false;
     }
 
     const cmd = this[cmdName];
+    let updatedDirectory = {};
 
     if (!cmd) {
       console.log(`Command ${cmdName} does not exists.`);
     }
 
     try {
-      cmd.do(this.directory, args);
+      updatedDirectory = cmd.do(directory, args);
     } catch (error) {
       console.log(error.message);
     }
+
+    return updatedDirectory;
   }
 }
 

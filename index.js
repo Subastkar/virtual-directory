@@ -10,17 +10,18 @@ const commandsDirectory = require('./src/commands');
  *  functionality of the exercise.
  */
 const run = async () => {
-  const parser = new Parser(new FileReader());
+  const parser = new Parser(FileReader);
   const manager = new CommandManager(commandsDirectory);
+  const directory = {};
 
   const instructions = await parser.parse(process.argv[2]);
   instructions.forEach((instruction) => {
     const { command, args } = CommandParser.parse(instruction);
 
-    manager.execute(command, args);
+    manager.execute(directory, command, args);
   });
 };
 
-(async() => {
+(async () => {
   await run();
 })();

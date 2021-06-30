@@ -19,6 +19,8 @@ class Move extends Command {
     const folder = this.getAndDelete(directory, originPath);
 
     this.assign(directory, targetPath, folder);
+
+    return directory;
   }
 
   /**
@@ -37,7 +39,7 @@ class Move extends Command {
     let folderName = 'root';
     let folder = {};
 
-    for (let count = 0; count < dirLength; count++) {
+    for (let count = 0; count < dirLength; count += 1) {
       if (!pastFolder) {
         throw new Error(`Cannot move ${path.join('/')} - ${folderName} does not exist.`);
       }
@@ -46,7 +48,7 @@ class Move extends Command {
 
       if (folderName === '') {
         throw new Error('Directory name invalid.');
-      };
+      }
 
       if (count === dirLength - 1) {
         folder = {
@@ -76,7 +78,7 @@ class Move extends Command {
     let pastFolder = directory;
     let folderName = 'root';
 
-    for (let count = 0; count < dirLength; count++) {
+    for (let count = 0; count < dirLength; count += 1) {
       if (!pastFolder) {
         throw new Error(`Cannot move ${path.join('/')} - ${folderName} does not exist.`);
       }
@@ -90,7 +92,7 @@ class Move extends Command {
       if (count === dirLength - 1) {
         const currentFolder = {
           ...pastFolder[folderName],
-          [folder.name]: folder.data
+          [folder.name]: folder.data,
         };
         pastFolder[folderName] = currentFolder;
       } else {

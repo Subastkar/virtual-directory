@@ -1,6 +1,11 @@
+const Create = require('./Create');
+const Move = require('./Move');
+const Delete = require('./Delete');
+const List = require('./List');
+
 module.exports = {
-  CREATE: require('./Create'),
-  MOVE: require('./Move'),
-  DELETE: require('./Delete'),
-  LIST: require('./List')
+  CREATE: Create,
+  MOVE: Move,
+  DELETE: Delete,
+  LIST: List,
 };

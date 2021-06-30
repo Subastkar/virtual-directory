@@ -18,7 +18,7 @@ class Delete extends Command {
     let pastFolder = directory;
     let folderName = 'root';
 
-    for (let count = 0; count < dirLength; count++) {
+    for (let count = 0; count < dirLength; count += 1) {
       if (!pastFolder) {
         throw new Error(`Cannot delete ${args[0]} - ${folderName} does not exist.`);
       }
@@ -37,7 +37,7 @@ class Delete extends Command {
       pastFolder = pastFolder[folderName];
     }
 
-    return true;
+    return directory;
   }
 }
 
